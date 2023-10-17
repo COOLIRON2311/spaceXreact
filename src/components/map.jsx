@@ -6,10 +6,10 @@ function Map(props) {
     const width = 1000;
     const height = 600;
     const margin = {
-        top: 20,
-        right: 20,
-        bottom: 20,
-        left: 100
+        top: 10,
+        right: 10,
+        bottom: 10,
+        left: 10
     };
     const containerRef = useRef(null);
     useEffect(() => {
@@ -21,8 +21,8 @@ function Map(props) {
             .attr("transform", `translate(${margin.left},${margin.top})`);
 
         const projection = d3.geoMercator()
-            .scale(70)
-            .center([0, 20])
+            .scale(100)
+            .center([-50, 0])
             .translate([width / 2 - margin.left, height / 2 - margin.top]);
         const g = svg.append("g");
 

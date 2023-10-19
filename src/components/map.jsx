@@ -13,6 +13,8 @@ function Map(props) {
     };
     const containerRef = useRef(null);
     useEffect(() => {
+        if (!props.launchpads.length)
+            return;
         const svg = d3.select(containerRef.current).append("svg");
         svg.selectAll("*").remove();
         svg.attr("width", width + margin.left + margin.right)
@@ -26,6 +28,9 @@ function Map(props) {
             .translate([width / 2 - margin.left, height / 2 - margin.top]);
         const g = svg.append("g");
 
+        const path = d3.geoPath()
+            .projection(projection);
+
         g.selectAll("path")
             .data(Geo.features)
             .enter()
@@ -33,6 +38,7 @@ function Map(props) {
             .attr("class", "topo")
             .attr("d", d3.geoPath().projection(projection))
             .style("opacity", .7);
+
         const zoom = d3.zoom()
             .scaleExtent([1, 8])
             .on('zoom', function (event) {
@@ -40,8 +46,16 @@ function Map(props) {
                     .attr('transform', event.transform);
             });
 
+        g.selectAll("point")
+            .data(props.launchpads)
+            .enter()
+            .append("path")
+            .attr("d", path)
+            .attr("id", (v) => v.id)
+            .attr("class", "norm_point");
+
         svg.call(zoom);
-    }, []);
+    }, [props.launchpads]);
 
 
 

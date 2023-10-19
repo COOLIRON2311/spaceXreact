@@ -6,7 +6,7 @@ function LaunchList(props) {
             <div id="listContainer">
                 <ul>
                     {props.launches.map(launch => {
-                        return <li key={launch.id}>{launch.name}</li>;
+                        return <li key={launch.id} lp={`L${launch.launchpad}`}>{launch.name}</li>;
                     })}
                 </ul>
             </div>

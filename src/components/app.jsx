@@ -3,10 +3,9 @@ import { Map as GeoMap} from "./map";
 import { useEffect, useState } from "react";
 import { SpaceX } from "../api/spacex";
 
-const spaceX = new SpaceX();
 
 function App() {
-
+    const spaceX = new SpaceX();
     const [launches, setLaunches] = useState([]);
     const [launchpads, setLaunchpads] = useState([]);
 

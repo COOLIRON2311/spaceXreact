@@ -1,3 +1,5 @@
+import { highLightPoint, toneDownPoint } from "./map";
+
 function LaunchList(props) {
 
     return (
@@ -6,7 +8,7 @@ function LaunchList(props) {
             <div id="listContainer">
                 <ul>
                     {props.launches.map(launch => {
-                        return <li key={launch.id} lp={`L${launch.launchpad}`}>{launch.name}</li>;
+                        return <li key={launch.id} lp={`L${launch.launchpad}`} onMouseOver={highLightPoint} onMouseLeave={toneDownPoint}>{launch.name}</li>;
                     })}
                 </ul>
             </div>

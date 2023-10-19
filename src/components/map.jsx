@@ -65,4 +65,23 @@ function Map(props) {
     );
 }
 
+function highLightPoint(event) {
+    const s1 = d3.selectAll(".norm_point");
+    const s2 = d3.select(`#${event.target.getAttribute("lp")}`);
+    s1.classed("off_point", true); // turn off all points
+    s2.classed("off_point", false); // turn on target point
+    s2.classed("norm_point", false); // disable normal state for target point
+    s2.classed("high_point", true); // enable highlight state for target point
+}
+
+function toneDownPoint(event) {
+    const s1 = d3.selectAll(".norm_point");
+    const s2 = d3.select(`#${event.target.getAttribute("lp")}`);
+    s1.classed("off_point", false); // turn on all points
+    s2.classed("high_point", false); // disable highlight state for target point
+    s2.classed("norm_point", true); // enable normal state for target point
+}
+
 export { Map };
+export { highLightPoint };
+export { toneDownPoint };
